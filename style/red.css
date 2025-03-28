@@ -1,0 +1,58 @@
+:root {
+    --primary-color: #D80000;
+    --secondary-color: #333;
+    --background-color: #F6F6F6;
+    --text-color: white;
+}
+
+.genres {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.genres-element {
+    width: 25%;
+}
+
+.red {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.red-form {
+    display: flex;
+    flex-direction: column;
+    background-size: 100% 100%;
+    text-align: center;
+    position: relative;
+}
+
+.red-form input,
+.red-form textarea,
+.red-form select,
+.red-form button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.red-form button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.red-form button:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
