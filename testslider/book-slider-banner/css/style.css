@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.book-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.book-description {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.book-description h2 {
+    font-size: 24px;
+    color: #d32f2f;
+}
+
+.book-description p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.learn-more {
+    background-color: #d32f2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.slider-container {
+    position: relative;
+    width: 80%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.book {
+    min-width: 200px;
+    margin: 0 10px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.book.active {
+    opacity: 1;
+}
+
+.book img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+.slider-control.prev {
+    left: 10px;
+}
+
+.slider-control.next {
+    right: 10px;
+}
+
+.shelf {
+    width: 100%;
+    height: 20px;
+    background: url('../img/shelf.png') no-repeat center;
+    background-size: cover;
+    margin-top: 20px;
+}
