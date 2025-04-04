@@ -53,15 +53,50 @@
         </section>
         <section class="block-catalog">
             <h2>Популярные категории</h2>
+            <?php
+                $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
+                $romantic_sql = "SELECT * FROM `genres` where `genre_name` = 'Романтика'";
+                $romantic_result = mysqli_query($genres_link, $romantic_sql);
+                $romantic = mysqli_fetch_array($romantic_result);
+                $action_sql = "SELECT * FROM `genres` where `genre_name` = 'Экшн'";
+                $action_result = mysqli_query($genres_link, $action_sql);
+                $action = mysqli_fetch_array($action_result);
+                $sport_sql = "SELECT * FROM `genres` where `genre_name` = 'Спорт'";
+                $sport_result = mysqli_query($genres_link, $sport_sql);
+                $sport = mysqli_fetch_array($sport_result);
+                $fantasy_sql = "SELECT * FROM `genres` where `genre_name` = 'Фентези'";
+                $fantasy_result = mysqli_query($genres_link, $fantasy_sql);
+                $fantasy = mysqli_fetch_array($fantasy_result);
+                $isecai_sql = "SELECT * FROM `genres` where `genre_name` = 'Исекай'";
+                $isecai_result = mysqli_query($genres_link, $isecai_sql);
+                $isecai = mysqli_fetch_array($isecai_result);
+                $syonen_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёнен'";
+                $syonen_result = mysqli_query($genres_link, $syonen_sql);
+                $syonen = mysqli_fetch_array($syonen_result);
+                $syodjo_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёдзё'";
+                $syodjo_result = mysqli_query($genres_link, $syodjo_sql);
+                $syodjo = mysqli_fetch_array($syodjo_result);
+                $comedy_sql = "SELECT * FROM `genres` where `genre_name` = 'Комедия'";
+                $comedy_result = mysqli_query($genres_link, $comedy_sql);
+                $comedy = mysqli_fetch_array($comedy_result);
+            ?>
             <div class="categories">
-                <div class="category"><a href="/pages/catalog.php?id=11"><img src="/img/category1.jpg" alt="Романтика"><span class="text">Романтика</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=7"><img src="/img/category2.jpg" alt="Экшн"><span class="text">Экшн</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=13"><img src="/img/category3.jpg" alt="Спорт"><span class="text">Спорт</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=5"><img src="/img/category4.jpg" alt="Фентези"><span class="text">Фентези</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=28"><img src="/img/category5.jpg" alt="Исекай"><span class="text">Исекай</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=1"><img src="/img/category6.jpg" alt="Сёнкн"><span class="text">Сёнен</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=2"><img src="/img/category7.jpg" alt="Сёдзё"><span class="text">Сёдзё</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=8"><img src="/img/category8.jpg" alt="Комедия"><span class="text">Комедия</span></a></div>
+                
+                <div class="category">
+                    <a href="/pages/catalog.php?id=<?=$romantic['genre_id']?>">
+                        <img src="/img/category1.jpg" alt="Романтика">
+                        <span class="text">
+                            Романтика
+                        </span>
+                    </a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$action['genre_id']?>"><img src="/img/category2.jpg" alt="Экшн"><span class="text">Экшн</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$sport['genre_id']?>"><img src="/img/category3.jpg" alt="Спорт"><span class="text">Спорт</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$fantasy['genre_id']?>"><img src="/img/category4.jpg" alt="Фентези"><span class="text">Фентези</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$isecai['genre_id']?>"><img src="/img/category5.jpg" alt="Исекай"><span class="text">Исекай</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$syonen['genre_id']?>"><img src="/img/category6.jpg" alt="Сёнен"><span class="text">Сёнен</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$syodjo['genre_id']?>"><img src="/img/category7.jpg" alt="Сёдзё"><span class="text">Сёдзё</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?=$comedy['genre_id']?>"><img src="/img/category8.jpg" alt="Комедия"><span class="text">Комедия</span></a></div>
             </div>
         </section>
         <section class="block-3">
