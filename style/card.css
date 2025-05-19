@@ -118,110 +118,113 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-.container {
-    grid-template-columns: 1fr;
-    padding: 10px;
-}
+    .container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 
-.product-images img {
-width: 100%;
-height: auto;
-}
+    .product-images img {
+        width: 100%;
+        height: auto;
+    }
 
-.product-title {
-font-size: 24px;
-}
+    .product-title {
+        font-size: 24px;
+    }
 
-.price {
-font-size: 20px;
-}
+    .price {
+        font-size: 20px;
+    }
 
-.quantity button {
-padding: 5px;
-font-size: 16px;
-}
+    .quantity button {
+        padding: 5px;
+        font-size: 16px;
+    }
 
-.quantity span {
-font-size: 16px;
-}
+    .quantity span {
+        font-size: 16px;
+    }
 
-.button {
-padding: 8px 16px;
-font-size: 16px;
-}
+    .button {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
 
-.breadcrumb {
-font-size: 12px;
-padding: 8px 16px;
-}
+    .breadcrumb {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
 
-.description, .features {
-padding: 10px 0;
-}
+    .description,
+    .features {
+        padding: 10px 0;
+    }
 }
 
 @media (max-width: 480px) {
-.product-title {
-font-size: 20px;
-}
+    .product-title {
+        font-size: 20px;
+    }
 
-.price {
-font-size: 18px;
-}
+    .price {
+        font-size: 18px;
+    }
 
-.quantity button {
-padding: 4px;
-font-size: 14px;
-}
+    .quantity button {
+        padding: 4px;
+        font-size: 14px;
+    }
 
-.quantity span {
-font-size: 14px;
-}
+    .quantity span {
+        font-size: 14px;
+    }
 
-.button {
-padding: 6px 12px;
-font-size: 14px;
-}
+    .button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
 
-.breadcrumb {
-font-size: 10px;
-padding: 6px 12px;
-}
+    .breadcrumb {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
 
-.description, .features {
-padding: 8px 0;
-}
+    .description,
+    .features {
+        padding: 8px 0;
+    }
 }
 
 @media (max-width: 320px) {
-.product-title {
-font-size: 18px;
-}
+    .product-title {
+        font-size: 18px;
+    }
 
-.price {
-font-size: 16px;
-}
+    .price {
+        font-size: 16px;
+    }
 
-.quantity button {
-padding: 3px;
-font-size: 12px;
-}
+    .quantity button {
+        padding: 3px;
+        font-size: 12px;
+    }
 
-.quantity span {
-font-size: 12px;
-}
+    .quantity span {
+        font-size: 12px;
+    }
 
-.button {
-padding: 5px 10px;
-font-size: 12px;
-}
+    .button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
 
-.breadcrumb {
-font-size: 9px;
-padding: 5px 10px;
-}
+    .breadcrumb {
+        font-size: 9px;
+        padding: 5px 10px;
+    }
 
-.description, .features {
-padding: 5px 0;
-}
+    .description,
+    .features {
+        padding: 5px 0;
+    }
 }

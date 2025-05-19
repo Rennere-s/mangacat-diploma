@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #D80000;
+    --secondary-color: #333;
+    --background-color: #F6F6F6;
+    --text-color: white;
+}
+
+
+
+.main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.cart-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Таблица товаров */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table thead {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.cart-table th,
+.cart-table td {
+    border: 3px solid black;
+    padding: 15px;
+    text-align: left;
+}
+
+.cart-table th {
+    font-weight: bold;
+}
+
+.cart-table tbody tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.cart-table td img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+td:has(img){
+    width: 15%;
+}
+
+.remove-btn {
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.restore-btn {
+    color: #27ae60;
+    cursor: pointer;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+}
+
+.out-of-stock {
+    color: var(--background-color);
+}
+
+/* Действия с корзиной */
+.cart-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.checkout-btn {
+    font-family: 'nishiki-teki';
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.summary {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.count-input a{
+    text-decoration: none;
+    color: black;
+}
+
+.text-danger{
+    text-decoration: none;
+    color: var(--primary-color);
+}

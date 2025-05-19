@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/card.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body>
@@ -34,8 +35,8 @@
 
     <div class="container">
         <div class="product-images">
-            <img src="<?= $card['good_img'] ?>" alt="Обложка манги">
-            <img src="<?= $card['good_back_img'] ?>" alt="Задняя обложка манги">
+            <img src="<?= $card['good_img'] ?>" alt="Обложка манги" loading="lazy">
+            <img src="<?= $card['good_back_img'] ?>" alt="Задняя обложка манги" loading="lazy">
         </div>
 
         <div class="product-info">

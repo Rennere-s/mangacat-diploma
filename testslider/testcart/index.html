@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина</title>
+  <style>
+    /* Главная секция */
+    .main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .clear-cart {
+      float: right;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+    .cart-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Таблица товаров */
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cart-table thead {
+      background-color: #D80000;
+      color: #fff;
+    }
+    .cart-table th,
+    .cart-table td {
+      padding: 15px;
+      text-align: left;
+    }
+    .cart-table th {
+      font-weight: bold;
+    }
+    .cart-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .cart-table img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .remove-btn {
+      color: #e74c3c;
+      cursor: pointer;
+    }
+    .restore-btn {
+      color: #27ae60;
+      cursor: pointer;
+    }
+    .quantity-input {
+      width: 50px;
+      text-align: center;
+    }
+    .out-of-stock {
+      color: #ccc;
+    }
+
+    /* Действия с корзиной */
+    .cart-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .checkout-btn {
+      padding: 10px 20px;
+      background-color: #D80000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .continue-shopping-btn {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .summary {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Главная секция -->
+  <section class="main">
+    <nav class="breadcrumb">
+      <a href="#">Главная</a> > <a href="#">Корзина заказов</a>
+    </nav>
+    <h1 class="cart-title">Корзина заказов</h1>
+    <button class="clear-cart">x очистить</button>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Товар</th>
+          <th>Цена</th>
+          <th>Количество</th>
+          <th>Стоимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img src="https://via.placeholder.com/100 " alt="Аккумулятор">
+            <p>Аккумулятор AUTOPOWER 60A/ч Обратная (-/+)</p>
+            <small class="remove-btn">Удалить</small>
+          </td>
+          <td>4 560 ₽/шт</td>
+          <td>
+            <input type="number" class="quantity-input" value="10">
+          </td>
+          <td>45 600 ₽/шт</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cart-actions">
+      <button class="checkout-btn">Оформить заказ</button>
+      <button class="continue-shopping-btn">Продолжить покупки</button>
+    </div>
+    <div class="summary">
+      <p>Суммарная скидка: 500 ₽</p>
+      <p>Итого со скидкой: 237 895 ₽</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -8,7 +8,7 @@
     --overlay-color: rgba(0, 0, 0, 0.5);
 }
 
-main{
+main {
     min-height: 900px;
 }
 
@@ -152,19 +152,21 @@ td {
     z-index: 1000;
     cursor: pointer;
 }
-@media (max-width: 1024px){
-    .table{
+
+@media (max-width: 1024px) {
+    .table {
         display: block;
         overflow-x: auto;
     }
 }
+
 /* Адаптация для экранов до 768px */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-250px);
     }
 
-    .header .logo{
+    .header .logo {
         margin-left: 30px;
     }
 
@@ -204,7 +206,8 @@ td {
         font-size: 14px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 4px;
     }
 }
@@ -232,7 +235,8 @@ td {
         font-size: 12px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 3px;
     }
 }

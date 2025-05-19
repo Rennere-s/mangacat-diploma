@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if($_COOKIE['user_role'] == 1):?>
+    <title><?php if ($_COOKIE['user_role'] == 1): ?>
             Профиль
         <?php else: ?>
             Админ-панель
-        <?php endif;?> 
+        <?php endif; ?>
     </title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style/style.css">
-    <link rel="stylesheet" href="/style/profile.css">   
+    <link rel="stylesheet" href="/style/profile.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body>
@@ -85,7 +86,8 @@
                                     <td><?= $row['good_name'] ?></td>
                                     <td><?= $row['genres'] ?></td>
                                     <td><img src="<?= $row['good_img'] ?>" alt="<?= $row['good_name'] ?>" width="100%"></td>
-                                    <td><img src="<?= $row['good_back_img'] ?>" alt="<?= $row['good_name'] ?> форзац" width="80%"></td>
+                                    <td><img src="<?= $row['good_back_img'] ?>" alt="<?= $row['good_name'] ?> форзац" width="80%">
+                                    </td>
                                     <td><?= $row['good_description'] ?></td>
                                     <td><?= $row['good_price'] ?></td>
                                     <td><?= $row['availability_name'] ?></td>

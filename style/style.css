@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     /* outline: 1px solid black; */
+    letter-spacing: 1px;
 }
 
 body {
@@ -391,11 +392,11 @@ header {
     text-decoration: none;
 }
 
-.subscription > * {
+.subscription>* {
     margin: 5px 0px;
 }
 
-.footer-menu-left ul > * {
+.footer-menu-left ul>* {
     margin: 5px 0px;
 }
 
@@ -744,6 +745,7 @@ section {
     .block-catalog .categories {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .category a::before {
         background: linear-gradient(to top, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0));
     }
@@ -759,10 +761,12 @@ section {
         flex-direction: column;
         align-items: center;
     }
+
     .about-us-image-of-girl-with-cat {
         width: 200px;
         height: 200px;
     }
+
     .contact-image img {
         height: 200px;
         width: 200px;
@@ -785,12 +789,14 @@ section {
         padding: 50px 70px 160px;
     }
 
-    .registration-form h1{
+    .registration-form h1 {
         font-size: 20px;
-    } 
-    .registration-form button{
+    }
+
+    .registration-form button {
         font-size: 11px;
-    } 
+    }
+
     .left .nav {
         display: none;
     }

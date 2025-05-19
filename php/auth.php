@@ -1,7 +1,7 @@
 <?php
 // Максимальное количество попыток входа
 $max_attempts = 5;
-// Время блокировки в секундах (например, 5 минут)
+// Время блокировки в секундах (в данном случе 5 минут)
 $lockout_time = 300;
 // Имя куки для хранения количества попыток
 $attempts_cookie_name = 'login_attempts';
@@ -9,14 +9,14 @@ $attempts_cookie_name = 'login_attempts';
 $last_attempt_cookie_name = 'last_attempt_time';
 
 // Получаем данные из кук
-$login_attempts = isset($_COOKIE[$attempts_cookie_name]) ? (int)$_COOKIE[$attempts_cookie_name] : 0;
-$last_attempt_time = isset($_COOKIE[$last_attempt_cookie_name]) ? (int)$_COOKIE[$last_attempt_cookie_name] : 0;
+$login_attempts = isset($_COOKIE[$attempts_cookie_name]) ? (int) $_COOKIE[$attempts_cookie_name] : 0;
+$last_attempt_time = isset($_COOKIE[$last_attempt_cookie_name]) ? (int) $_COOKIE[$last_attempt_cookie_name] : 0;
 
 // Проверяем, не превышено ли количество попыток
 if ($login_attempts >= $max_attempts) {
     // Проверяем, прошло ли время блокировки
     if (time() - $last_attempt_time < $lockout_time) {
-        // Пользователь заблокирован: показываем сообщение и завершаем выполнение скрипта
+        // Пользователь заблокирован: передаем сообщение на страницу входа и завершаем выполнение скрипта
         $error_message = urlencode("Слишком много попыток входа. Попробуйте снова через " . ($lockout_time - (time() - $last_attempt_time)) . " секунд.");
         header("Location: /pages/auth.php?error=" . $error_message);
         exit; // Прекращаем выполнение скрипта

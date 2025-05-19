@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -8,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/catalog.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />    
 </head>
 
 <body>
@@ -65,7 +69,7 @@
                     ?>
                     <div class="product">
                         <a href="/pages/good_card.php?id=<?= $row['good_id'] ?>">
-                            <img src="<?= $row['good_img'] ?>" alt="<?= $row['good_name'] ?>">
+                            <img src="<?= $row['good_img'] ?>" alt="<?= $row['good_name'] ?>"  loading="lazy">
                         </a>
                         <div class="product-no-image">
                             <a href="/pages/good_card.php?id=<?= $row['good_id'] ?>">
@@ -74,22 +78,31 @@
                             <div class="product-desc truncate"><?= $row['good_description'] ?></div>
                             <div class="product-footer">
                                 <div class="product-price"><?= $row['good_price'] ?></div>
-                                <div class="product-actions">
-                                    <button><i class="fas fa-heart"></i></button>
-                                    <button><i class="fas fa-shopping-cart"></i></button>
+                                    <form class="product-actions" action="/php/cart.php" method="post">
+                                        <input type='hidden' name='id' value='<?= $row['good_id']?>'>
+                                        <button name="add_to_favorite" type="submit"><i class="fas fa-heart"></i></button>
+                                        <button name="add_to_cart" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 <?php endwhile; ?>
             </section>
     </main>
-
     <footer>
         <?php
         include "$root/php/modules/footer.php";
         ?>
     </footer>
+    <?php
+    
+    if (isset($_SESSION['success_message'])) {
+    $message = $_SESSION['success_message'];
+    unset($_SESSION['success_message']); // Очищаем сообщение
+    echo "<script>alert('$message');</script>";
+    }
+    
+    ?>
     <script src="/script/script.js"></script>
 </body>
 

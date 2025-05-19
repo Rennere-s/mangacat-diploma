@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/about.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body>
@@ -20,13 +21,16 @@
     <main>
         <div class="container">
             <section class="about-section">
-                <img src="/img/aboutus.jpg" alt="Магазин манги">
+                <img src="/img/aboutus.jpg" alt="Магазин манги" loading="lazy">
                 <div class="about-text">
                     <h2>О нас</h2>
-                    <p>В <strong>mangaCat</strong> мы стремимся сделать мир манги доступным для всех любителей жанра. Будь
-                        вы опытным коллекционером или новичком, мы предлагаем широкий ассортимент для удовлетворения ваших
+                    <p>В <strong>mangaCat</strong> мы стремимся сделать мир манги доступным для всех любителей жанра.
+                        Будь
+                        вы опытным коллекционером или новичком, мы предлагаем широкий ассортимент для удовлетворения
+                        ваших
                         потребностей.</p>
-                    <p>Основанный энтузиастами манги, наш магазин предлагает как классические, так и самые новые издания. Мы
+                    <p>Основанный энтузиастами манги, наш магазин предлагает как классические, так и самые новые
+                        издания. Мы
                         верим, что каждая история заслуживает быть рассказанной!</p>
                     <p>Присоединяйтесь к семье mangaCat уже сегодня и откройте для себя мир увлекательных приключений и
                         незабываемых героев.</p>

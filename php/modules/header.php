@@ -27,16 +27,14 @@
                     <?php endif; ?>
                 </ul>
             </div>
-            <?php if ($_COOKIE['user_id'] != ''): ?>
-                <a href="/pages/indev.php"><i class="fas fa-shopping-cart"></i></a>
-            <?php endif; ?>
+            <a href="/pages/cart.php"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
 </div>
 <nav id="nav" class="burger-nav">
-        <a href="/">Главная</a>
-        <a href="/pages/catalog.php">Каталог</a>
-        <a href="/pages/about.php">О нас</a>
+    <a href="/">Главная</a>
+    <a href="/pages/catalog.php">Каталог</a>
+    <a href="/pages/about.php">О нас</a>
 </nav>
 
 

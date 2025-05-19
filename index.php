@@ -7,6 +7,7 @@
     <title>MangaCat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body>
@@ -27,13 +28,13 @@
             <div class="slider">
                 <div class="slider-track">
                     <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1">
+                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2">
+                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3">
+                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
                     </div>
                 </div>
                 <div class="slider-controls">
@@ -54,49 +55,63 @@
         <section class="block-catalog">
             <h2>Популярные категории</h2>
             <?php
-                $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
-                $romantic_sql = "SELECT * FROM `genres` where `genre_name` = 'Романтика'";
-                $romantic_result = mysqli_query($genres_link, $romantic_sql);
-                $romantic = mysqli_fetch_array($romantic_result);
-                $action_sql = "SELECT * FROM `genres` where `genre_name` = 'Экшн'";
-                $action_result = mysqli_query($genres_link, $action_sql);
-                $action = mysqli_fetch_array($action_result);
-                $sport_sql = "SELECT * FROM `genres` where `genre_name` = 'Спорт'";
-                $sport_result = mysqli_query($genres_link, $sport_sql);
-                $sport = mysqli_fetch_array($sport_result);
-                $fantasy_sql = "SELECT * FROM `genres` where `genre_name` = 'Фентези'";
-                $fantasy_result = mysqli_query($genres_link, $fantasy_sql);
-                $fantasy = mysqli_fetch_array($fantasy_result);
-                $isecai_sql = "SELECT * FROM `genres` where `genre_name` = 'Исекай'";
-                $isecai_result = mysqli_query($genres_link, $isecai_sql);
-                $isecai = mysqli_fetch_array($isecai_result);
-                $syonen_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёнен'";
-                $syonen_result = mysqli_query($genres_link, $syonen_sql);
-                $syonen = mysqli_fetch_array($syonen_result);
-                $syodjo_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёдзё'";
-                $syodjo_result = mysqli_query($genres_link, $syodjo_sql);
-                $syodjo = mysqli_fetch_array($syodjo_result);
-                $comedy_sql = "SELECT * FROM `genres` where `genre_name` = 'Комедия'";
-                $comedy_result = mysqli_query($genres_link, $comedy_sql);
-                $comedy = mysqli_fetch_array($comedy_result);
+            $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
+            $romantic_sql = "SELECT * FROM `genres` where `genre_name` = 'Романтика'";
+            $romantic_result = mysqli_query($genres_link, $romantic_sql);
+            $romantic = mysqli_fetch_array($romantic_result);
+            $action_sql = "SELECT * FROM `genres` where `genre_name` = 'Экшн'";
+            $action_result = mysqli_query($genres_link, $action_sql);
+            $action = mysqli_fetch_array($action_result);
+            $sport_sql = "SELECT * FROM `genres` where `genre_name` = 'Спорт'";
+            $sport_result = mysqli_query($genres_link, $sport_sql);
+            $sport = mysqli_fetch_array($sport_result);
+            $fantasy_sql = "SELECT * FROM `genres` where `genre_name` = 'Фентези'";
+            $fantasy_result = mysqli_query($genres_link, $fantasy_sql);
+            $fantasy = mysqli_fetch_array($fantasy_result);
+            $isecai_sql = "SELECT * FROM `genres` where `genre_name` = 'Исекай'";
+            $isecai_result = mysqli_query($genres_link, $isecai_sql);
+            $isecai = mysqli_fetch_array($isecai_result);
+            $syonen_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёнен'";
+            $syonen_result = mysqli_query($genres_link, $syonen_sql);
+            $syonen = mysqli_fetch_array($syonen_result);
+            $syodjo_sql = "SELECT * FROM `genres` where `genre_name` = 'Сёдзё'";
+            $syodjo_result = mysqli_query($genres_link, $syodjo_sql);
+            $syodjo = mysqli_fetch_array($syodjo_result);
+            $comedy_sql = "SELECT * FROM `genres` where `genre_name` = 'Комедия'";
+            $comedy_result = mysqli_query($genres_link, $comedy_sql);
+            $comedy = mysqli_fetch_array($comedy_result);
+            mysqli_close($genres_link);
             ?>
             <div class="categories">
-                
+
                 <div class="category">
-                    <a href="/pages/catalog.php?id=<?=$romantic['genre_id']?>">
-                        <img src="/img/category1.jpg" alt="Романтика">
+                    <a href="/pages/catalog.php?id=<?= $romantic['genre_id'] ?>">
+                        <img src="/img/category1.jpg" alt="Романтика" loading="lazy">
                         <span class="text">
                             Романтика
                         </span>
                     </a>
                 </div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$action['genre_id']?>"><img src="/img/category2.jpg" alt="Экшн"><span class="text">Экшн</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$sport['genre_id']?>"><img src="/img/category3.jpg" alt="Спорт"><span class="text">Спорт</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$fantasy['genre_id']?>"><img src="/img/category4.jpg" alt="Фентези"><span class="text">Фентези</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$isecai['genre_id']?>"><img src="/img/category5.jpg" alt="Исекай"><span class="text">Исекай</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$syonen['genre_id']?>"><img src="/img/category6.jpg" alt="Сёнен"><span class="text">Сёнен</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$syodjo['genre_id']?>"><img src="/img/category7.jpg" alt="Сёдзё"><span class="text">Сёдзё</span></a></div>
-                <div class="category"><a href="/pages/catalog.php?id=<?=$comedy['genre_id']?>"><img src="/img/category8.jpg" alt="Комедия"><span class="text">Комедия</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $action['genre_id'] ?>"><img
+                            src="/img/category2.jpg" alt="Экшн" loading="lazy"><span class="text">Экшн</span></a></div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $sport['genre_id'] ?>"><img
+                            src="/img/category3.jpg" alt="Спорт" loading="lazy"><span class="text">Спорт</span></a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $fantasy['genre_id'] ?>"><img
+                            src="/img/category4.jpg" alt="Фентези" loading="lazy"><span class="text">Фентези</span></a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $isecai['genre_id'] ?>"><img
+                            src="/img/category5.jpg" alt="Исекай" loading="lazy"><span class="text">Исекай</span></a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $syonen['genre_id'] ?>"><img
+                            src="/img/category6.jpg" alt="Сёнен" loading="lazy"><span class="text">Сёнен</span></a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $syodjo['genre_id'] ?>"><img
+                            src="/img/category7.jpg" alt="Сёдзё" loading="lazy"><span class="text">Сёдзё</span></a>
+                </div>
+                <div class="category"><a href="/pages/catalog.php?id=<?= $comedy['genre_id'] ?>"><img
+                            src="/img/category8.jpg" alt="Комедия" loading="lazy"><span class="text">Комедия</span></a>
+                </div>
             </div>
         </section>
         <section class="block-3">
@@ -122,13 +137,13 @@
             <div class="slider">
                 <div class="slider-track">
                     <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1">
+                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2">
+                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3">
+                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
                     </div>
                 </div>
                 <div class="slider-controls">
@@ -150,13 +165,13 @@
             <div class="slider">
                 <div class="slider-track">
                     <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1">
+                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2">
+                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3">
+                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
                     </div>
                 </div>
                 <div class="slider-controls">
@@ -204,7 +219,7 @@
                         </div>
                     </div>
                     <div class="contact-image">
-                        <img src="/img/contact-image.png" alt="Аниме девушка с котом">
+                        <img src="/img/contact-image.png" alt="Аниме девушка с котом" loading="lazy">
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/red.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body class="redacture">
@@ -57,7 +58,7 @@
                             ?>
                             <div class="genres-element">
                                 <input type="checkbox" name="genres[]" value="<?= $row['genre_id'] ?>" <?php if (in_array($row['genre_id'], $selected_genres))
-                                    echo 'checked'; ?>><?= $row['genre_name'] ?>
+                                      echo 'checked'; ?>><?= $row['genre_name'] ?>
                             </div>
                         <?php endwhile; ?>
                     </div>
@@ -77,7 +78,8 @@
                         while ($row = mysqli_fetch_array($availability_result)):
                             ?>
                             <option value="<?= $row['availability_id'] ?>" <?php if ($card['good_availability'] == $row['availability_id']): ?> selected <?php endif; ?>>
-                                <?= $row['availability_name'] ?></option>
+                                <?= $row['availability_name'] ?>
+                            </option>
                         <?php endwhile; ?>
                     </select>
                     <button type="submit">Изменить</button>
@@ -86,7 +88,7 @@
         <?php elseif ($type == "genres"): ?>
             <section class="red">
                 <?php
-                $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');           
+                $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
                 $genres_sql = "SELECT * FROM genres WHERE genre_id = '$id'";
                 $genres_result = mysqli_query($genres_link, $genres_sql);
                 $card = mysqli_fetch_array($genres_result);
@@ -127,7 +129,8 @@
                         $role_result = mysqli_query($role_link, $role_sql);
                         while ($row = mysqli_fetch_array($role_result)):
                             ?>
-                            <option value="<?= $row['role_id'] ?>" <?php if ($card['user_role'] == $row['role_id']): ?> selected <?php endif; ?>><?= $row['role_name'] ?></option>
+                            <option value="<?= $row['role_id'] ?>" <?php if ($card['user_role'] == $row['role_id']): ?> selected
+                                <?php endif; ?>><?= $row['role_name'] ?></option>
                         <?php endwhile; ?>
                     </select>
                     <button type="submit">Изменить</button>

@@ -7,6 +7,7 @@
     <title>Авторизация</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="shortcut icon" href="/img/mangaCat-logo 2.png" />
 </head>
 
 <body class="registration-body">
@@ -24,10 +25,10 @@
                 <input type="text" name="user_login" placeholder="Логин" required>
                 <input type="password" name="user_password" placeholder="Пароль" required>
                 <?php
-                    if (isset($_GET['error'])) {
-                        $error_message = urldecode($_GET['error']);
-                        echo "<div style='color: red;'>$error_message</div>";
-                    }
+                if (isset($_GET['error'])) {
+                    $error_message = urldecode($_GET['error']);
+                    echo "<div style='color: red;'>$error_message</div>";
+                }
                 ?>
                 <button type="submit">Войти</button>
             </form>
