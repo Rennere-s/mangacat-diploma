@@ -38,7 +38,10 @@ $final_price = 0;
         <section class="main">
             <?php 
             if (empty($_SESSION['cart'])): ?>
-                <h6 class="text-center">В корзине нет товаров</h6>
+                <div class="empty-cart">
+                    <h6 class="text-center">В корзине нет товаров</h6>
+                    <div class="girl-with-cat-empty-cart"></div>
+                </div>
             <?php else : ?>
             <h1 class="cart-title">Корзина заказов</h1>
             <form action="/php/order.php" method="post">

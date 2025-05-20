@@ -66,6 +66,7 @@ unset($_SESSION['cart']);
 
 // Редирект после завершения всех операций
 if (empty($errors)) {
+    $_SESSION['success_message'] = 'Заказ успешко оформлен!';
     header('Location: /pages/cart.php?order=yes');
 } else {
     // Можно записать ошибки в лог или вывести их

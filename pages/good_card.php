@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['success_message'])) {
+    $message = $_SESSION['success_message'];
+    unset($_SESSION['success_message']); // Очищаем сообщение
+    echo "<script>alert('$message');</script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,15 +61,10 @@
                 <h2>Жанры:</h2>
                 <p><?= $card['genres'] ?></p>
             </div>
-
-            <div class="quantity">
-                <button onclick="decreaseQuantity()">-</button>
-                <span id="quantity">1</span>
-                <button onclick="increaseQuantity()">+</button>
-            </div>
-
-            <button class="button" onclick="addToCart()">Добавить в корзину</button>
-
+            <form action="/php/cart.php" method="post">
+                <input type="hidden" name="id" value="<?=$id?>">
+                <button class="button" name="add_to_cart" type="submit">Добавить в корзину</button>
+            </form>
         </div>
     </div>
 
@@ -70,25 +74,6 @@
         ?>
     </footer>
     <script src="/script/script.js"></script>
-    <script>
-        let quantity = 1;
-
-        function increaseQuantity() {
-            quantity++;
-            document.getElementById('quantity').innerText = quantity;
-        }
-
-        function decreaseQuantity() {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById('quantity').innerText = quantity;
-            }
-        }
-
-        function addToCart() {
-            alert(`Добавлено в корзину: ${quantity} шт.`);
-        }
-    </script>
 </body>
 
 </html>
