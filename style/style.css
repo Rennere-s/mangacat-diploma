@@ -572,78 +572,132 @@ body.registration-body {
     color: var(--primary-color);
 }
 
-.slider {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
+body {
+    font-family: 'Rostov', 'nishiki-teki';
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
-.slider-track {
-    display: flex;
+/* Заголовок */
+.slider-title {
+    letter-spacing: 3px;
+    font-size: 32px;
+    color: #D80000;
+    text-align: center;
+    margin: 40px 120px; /* Отступы как вам удобно */
+}
+
+/* Основной контейнер слайдера */
+.book-slider {
+    position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto; /* Если хотите по центру сайта — можно оставить */
+    padding: 0 120px; /* Внутренние отступы */
+    box-sizing: border-box;
+}
+
+/* Левый блок с описанием книги */
+.book-description {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    padding-right: 40px;
+    box-sizing: border-box;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.book-description h2 {
+    font-size: 24px;
+    color: #D80000;
+    margin-bottom: 10px;
+}
+
+.book-description p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.learn-more button{
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 2px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    display: inline-block;
+    transition: color 0.4s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.learn-more button:hover{
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+/* Правая часть — контейнер со слайдером */
+.slider-container {
+    display: inline-block;
+    width: 68%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+}
+
+.slider {
+    display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
-.slide {
+.book {
+    min-width: 200px;
+    margin: 0 10px;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+
+.book.active {
+    min-width: 220px;
+    opacity: 1;
+}
+
+.book img {
     width: 100%;
-    height: 100%;
-    display: none;
-    background-size: cover;
-    background-position: center;
+    border-radius: 10px;
 }
 
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.slide.active {
-    display: block;
-}
-
-.slider-controls {
+.slider-control {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.prev-slide,
-.next-slide {
-    margin: 15px;
-    background-color: transparent;
+    top: 40%;
+    transform: translateY(-70%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
     border: none;
+    padding: 10px;
     cursor: pointer;
-    font-size: 24px;
-    color: var(--text-color);
-}
-
-.slider-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
+    font-size: 18px;
     border-radius: 50%;
-    background-color: var(--text-color);
-    margin: 0 5px;
-    cursor: pointer;
 }
 
-.dot.active {
-    background-color: var(--secondary-color);
+.slider-control.prev {
+    left: 10px;
 }
 
+.slider-control.next {
+    right: 10px;
+}
+
+.shelf {
+    width: 100%;
+    height: 120px;
+    background: url('../img/shelf.png') no-repeat center;
+    background-size: cover;
+    margin-top: -120px;
+}
 .block-catalog {
     text-align: center;
     max-width: 1200px;

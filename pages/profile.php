@@ -86,7 +86,7 @@
                                     <td><?= $row['good_name'] ?></td>
                                     <td><?= $row['genres'] ?></td>
                                     <td><img src="<?= $row['good_img'] ?>" alt="<?= $row['good_name'] ?>" width="100%"></td>
-                                    <td><img src="<?= $row['good_back_img'] ?>" alt="<?= $row['good_name'] ?> форзац" width="80%">
+                                    <td><img src="<?= $row['good_back_img'] ?>" alt="<?= $row['good_name'] ?> задняя обложка" width="80%">
                                     </td>
                                     <td><?= $row['good_description'] ?></td>
                                     <td><?= $row['good_price'] ?></td>

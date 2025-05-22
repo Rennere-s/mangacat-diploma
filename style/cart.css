@@ -62,16 +62,6 @@ td:has(img){
     width: 15%;
 }
 
-.remove-btn {
-    color: #e74c3c;
-    cursor: pointer;
-}
-
-.restore-btn {
-    color: #27ae60;
-    cursor: pointer;
-}
-
 .quantity-input {
     width: 50px;
     text-align: center;
@@ -95,6 +85,12 @@ td:has(img){
     color: var(--text-color);
     border: 2px solid black;
     cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.checkout-btn:hover{
+    background-color: var(--background-color);
+    color: var(--primary-color);
 }
 
 .summary {
@@ -132,6 +128,8 @@ td:has(img){
 }
 
 .empty-cart{
+    position: relative;
+    top: -30px;
     display: flex;
     align-items: center;
     flex-direction: row-reverse;

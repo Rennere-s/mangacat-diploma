@@ -15,6 +15,7 @@
         <?php
         $root = $_SERVER['DOCUMENT_ROOT'];
         include "$root/php/modules/header.php";
+        $sql = new mysqli('localhost', 'root', 'root', 'mangacat');
         ?>
     </header>
     <main>
@@ -24,34 +25,31 @@
                 <p>Ваш идеальный источник манги</p>
             </div>
         </div>
-        <section class="block-slider">
+        <h1 class="slider-title">Новинки</h1>
+        <div class="slider-wrapper">
+            <section class="book-slider">
+                <div class="book-description">
+                    <h2 class="book-title">Название книги</h2>
+                    <p class="book-description-text">Описание активной книги. Здесь будет текст, который меняется при переключении книг.</p>
+                    <a class="learn-more"><button>Узнать больше</button></a>
+                </div>
+        <div class="slider-container">
             <div class="slider">
-                <div class="slider-track">
-                    <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
-                    </div>
+                <?php 
+                    $result_banner_news = $sql->query("SELECT * FROM `banner_news`"); 
+                    while($row = $result_banner_news->fetch_assoc()):
+                ?>
+                <div class="book" data-title="<?=$row['new_manga_name']?>" data-description="<?=$row['new_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['new_manga_id']?>">
+                    <img src="/img/bannernews<?=$row['new_manga_img']?>.png" alt="">
                 </div>
-                <div class="slider-controls">
-                    <button class="prev-slide">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="next-slide">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="slider-dots">
-                    <button class="dot active"></button>
-                    <button class="dot"></button>
-                    <button class="dot"></button>
-                </div>
+                <?php endwhile;?>
             </div>
-        </section>
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+        </div>
+        <div class="shelf"></div>
+    </section>
+    </div>
         <section class="block-catalog">
             <h2>Популярные категории</h2>
             <?php
@@ -133,62 +131,78 @@
                 </div>
             </div>
         </section>
-        <section class="block-slider">
+        <h1 class="slider-title">Новинки</h1>
+        <div class="slider-wrapper">
+            <section class="book-slider">
+                <div class="book-description">
+                    <h2 class="book-title">Название книги</h2>
+                    <p class="book-description-text">Описание активной книги. Здесь будет текст, который меняется при переключении книг.</p>
+                    <button class="learn-more">Узнать больше</button>
+                </div>
+        <div class="slider-container">
             <div class="slider">
-                <div class="slider-track">
-                    <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
-                    </div>
+                <div class="book" data-title="Книга 1" data-description="Описание олролрвал орваыолавловыорыларо лваолрвыар оыаолыоарыа рваыолавыорал оывалоравыл оавыолрывало рваыолвало книги 1">
+                    <img src="img/book1.png" alt="Книга 1">
+                    <div class="drop-shadow"></div>
                 </div>
-                <div class="slider-controls">
-                    <button class="prev-slide">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="next-slide">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+                <div class="book" data-title="Книга 2" data-description="Описание книги 2"> 
+                    <img src="img/book2.png" alt="Книга 2">
                 </div>
-                <div class="slider-dots">
-                    <button class="dot active"></button>
-                    <button class="dot"></button>
-                    <button class="dot"></button>
+                <div class="book" data-title="Книга 3" data-description="Описание книги 3">
+                    <img src="img/book3.png" alt="Книга 3">
+                </div>
+                <div class="book" data-title="Книга 4" data-description="Описание книги 4">
+                    <img src="img/book3.png" alt="Книга 4">
+                </div>
+                <div class="book" data-title="Книга 5" data-description="Описание книги 5">
+                    <img src="img/book3.png" alt="Книга 5">
+                </div>
+                <div class="book" data-title="Книга 6" data-description="Описание книги 6">
+                    <img src="img/book3.png" alt="Книга 6">
                 </div>
             </div>
-        </section>
-        <section class="block-slider">
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+        </div>
+        <div class="shelf"></div>
+    </section>
+    </div>
+                <h1 class="slider-title">Новинки</h1>
+        <div class="slider-wrapper">
+            <section class="book-slider">
+                <div class="book-description">
+                    <h2 class="book-title">Название книги</h2>
+                    <p class="book-description-text">Описание активной книги. Здесь будет текст, который меняется при переключении книг.</p>
+                    <button class="learn-more">Узнать больше</button>
+                </div>
+        <div class="slider-container">
             <div class="slider">
-                <div class="slider-track">
-                    <div class="slide active">
-                        <img src="/img/баннер 1 (1).jpg" alt="Slider Image 1" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (2).jpg" alt="Slider Image 2" loading="lazy">
-                    </div>
-                    <div class="slide">
-                        <img src="/img/баннер 1 (3).jpg" alt="Slider Image 3" loading="lazy">
-                    </div>
+                <div class="book" data-title="Книга 1" data-description="Описание олролрвал орваыолавловыорыларо лваолрвыар оыаолыоарыа рваыолавыорал оывалоравыл оавыолрывало рваыолвало книги 1">
+                    <img src="img/book1.png" alt="Книга 1">
+                    <div class="drop-shadow"></div>
                 </div>
-                <div class="slider-controls">
-                    <button class="prev-slide">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button class="next-slide">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+                <div class="book" data-title="Книга 2" data-description="Описание книги 2"> 
+                    <img src="img/book2.png" alt="Книга 2">
                 </div>
-                <div class="slider-dots">
-                    <button class="dot active"></button>
-                    <button class="dot"></button>
-                    <button class="dot"></button>
+                <div class="book" data-title="Книга 3" data-description="Описание книги 3">
+                    <img src="img/book3.png" alt="Книга 3">
+                </div>
+                <div class="book" data-title="Книга 4" data-description="Описание книги 4">
+                    <img src="img/book3.png" alt="Книга 4">
+                </div>
+                <div class="book" data-title="Книга 5" data-description="Описание книги 5">
+                    <img src="img/book3.png" alt="Книга 5">
+                </div>
+                <div class="book" data-title="Книга 6" data-description="Описание книги 6">
+                    <img src="img/book3.png" alt="Книга 6">
                 </div>
             </div>
-        </section>
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+        </div>
+        <div class="shelf"></div>
+    </section>
+    </div>
         <section class="block-4">
             <div class="contact-container">
                 <div class="contact-header">

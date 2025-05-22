@@ -48,50 +48,74 @@ function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.slider').forEach(slider => {
-        const slides = slider.querySelectorAll('.slide');
-        const dots = slider.querySelectorAll('.dot');
-        const prevButton = slider.querySelector('.prev-slide');
-        const nextButton = slider.querySelector('.next-slide');
-        let currentIndex = 0;
+function initSlider(sliderContainer) {
+    const slider = sliderContainer.querySelector('.slider');
+    const books = sliderContainer.querySelectorAll('.book');
+    const prevButton = sliderContainer.querySelector('.slider-control.prev');
+    const nextButton = sliderContainer.querySelector('.slider-control.next');
+    const bookTitle = sliderContainer.querySelector('.book-title');
+    const bookDescription = sliderContainer.querySelector('.book-description-text');
+    const learnMoreButton = sliderContainer.querySelector('.learn-more');
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
+    let currentIndex = 0;
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            showSlide(currentIndex);
-        }
+    function updateSlider() {
+        // Сдвигаем слайдер
+        slider.style.transform = `translateX(-${currentIndex * (books[0].offsetWidth + 20)}px)`;
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            showSlide(currentIndex);
-        }
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                showSlide(currentIndex);
-            });
+        // Обновляем активный класс у книг
+        books.forEach((book, index) => {
+            book.classList.toggle('active', index === currentIndex);
         });
 
-        prevButton.addEventListener('click', prevSlide);
-        nextButton.addEventListener('click', nextSlide);
+        // Обновляем текстовое описание, только если элементы существуют
+        const activeBook = books[currentIndex];
+        if (bookTitle && activeBook.dataset.title) {
+            bookTitle.textContent = activeBook.dataset.title;
+        }
+        if (bookDescription && activeBook.dataset.description) {
+            bookDescription.textContent = activeBook.dataset.description;
+        }
+        if (learnMoreButton && activeBook.dataset.link) {
+            learnMoreButton.setAttribute('href', activeBook.dataset.link);
+        }
+        // console.log("Active Book:", activeBook);
+        // console.log("bookTitle:", bookTitle);
+        // console.log("bookDescription:", bookDescription);
+    }
 
-        // Автоматическое перелистывание слайдов каждые 5 секунд
-        // setInterval(nextSlide, 5000);
-
-        // Инициализация первого слайда
-        showSlide(currentIndex);
+    // Обработчики кнопок
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : books.length - 1;
+        updateSlider();
     });
-});
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex < books.length - 1) ? currentIndex + 1 : 0;
+        updateSlider();
+    });
+
+    // Обработка клика по книге
+    books.forEach((book, index) => {
+        book.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+        });
+    });
+
+    // Инициализация
+    updateSlider();
+
+    // Обновление при изменении размера окна
+    window.addEventListener('resize', () => {
+        updateSlider();
+    });
+}
+
+// Инициализируем все слайдеры
+document.querySelectorAll('.book-slider').forEach(initSlider);
+
+// Функция toggleMenu остаётся без изменений
 function toggleMenu() {
     const nav = document.getElementById('nav');
     nav.classList.toggle('active');
