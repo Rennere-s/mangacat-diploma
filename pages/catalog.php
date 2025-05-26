@@ -28,18 +28,18 @@ session_start();
 
         <div class="catalog-content">
             <aside class="filter">
-                <form>
+                <form action="/pages/catalog.php" method="get">
                     <label>Сортировать по:</label>
-                    <input type="text" placeholder="Поиск">
+                    <input name="search" type="text" placeholder="Поиск">
                     <button type="submit">Найти</button>
 
                     <label>Цена:</label>
-                    <input type="number" placeholder="От">
-                    <input type="number" placeholder="До">
+                    <input type="number" name="min-price" placeholder="От">
+                    <input type="number" name="max-price" placeholder="До">
 
                     <label>Категории:</label>
-                    <select>
-                        <option>Все</option>
+                    <select name="id">
+                        <option value="">Все</option>
                         <?php
 
                         $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
@@ -50,9 +50,8 @@ session_start();
                             <option value="<?= $row['genre_id'] ?>"><?= $row['genre_name'] ?></option>
                         <?php endwhile; ?>
                     </select>
-
                     <label>
-                        <input type="checkbox" checked> В наличии
+                        <input name="availability" type="checkbox" checked> В наличии
                     </label>
 
                     <button type="submit">Показать</button>
@@ -60,12 +59,82 @@ session_start();
                 </form>
             </aside>
             <section class="products">
-                <?php
+                    <?php
+                    $search = $_GET['search'] ?? '';
+                    $min_price = $_GET['min-price'] ?? '';
+                    $max_price = $_GET['max-price'] ?? '';
+                    $id = $_GET['id'] ?? '';
+                    $availability = $_GET['availability'] ?? '';
 
-                $good_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
-                $good_sql = "SELECT * FROM `goods`";
-                $good_result = mysqli_query($good_link, $good_sql);
-                while ($row = mysqli_fetch_array($good_result)):
+                    // Подключение
+                    $good_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
+                    if (!$good_link) {
+                        die("Ошибка подключения: " . mysqli_connect_error());
+                    }
+
+                    $whereClauses = ["1=1"];
+                    $params = [];
+                    $types = "";
+
+                    // Формируем условия
+                    if (!empty($search)) {
+                        $whereClauses[] = "good_name LIKE ?";
+                        $params[] = "%$search%";
+                        $types .= "s";
+                    }
+
+                    if (!empty($min_price)) {
+                        $whereClauses[] = "good_price > ?";
+                        $params[] = $min_price;
+                        $types .= "d";
+                    }
+
+                    if (!empty($max_price)) {
+                        $whereClauses[] = "good_price < ?";
+                        $params[] = $max_price;
+                        $types .= "d";
+                    }
+
+                    // SQL-запрос
+                    $good_sql = "
+                        SELECT 
+                            good_id, 
+                            good_name, 
+                            good_img, 
+                            good_description, 
+                            good_price, 
+                            good_availability, 
+                            GROUP_CONCAT(m_genre_id SEPARATOR ',') AS genres 
+                        FROM goods
+                        LEFT JOIN manga_genre ON g_manga_id = good_id
+                        WHERE " . implode(" AND ", $whereClauses) . "
+                        GROUP BY good_id
+                    ";
+
+                    // Добавляем HAVING только если $id задан
+                    if (!empty($id)) {
+                        $good_sql .= " HAVING genres LIKE ?";
+                        $params[] = "%$id%";
+                        $types .= "s";
+                    }
+
+                    // Подготавливаем запрос
+                    $stmt = mysqli_prepare($good_link, $good_sql);
+                    if ($stmt === false) {
+                        die("Ошибка подготовки запроса: " . mysqli_error($good_link));
+                    }
+
+                    // Привязываем параметры, если они есть
+                    if (!empty($params)) {
+                        mysqli_stmt_bind_param($stmt, $types, ...$params);
+                    }
+
+                    // Выполняем запрос
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    // Выводим результат
+                    while ($row = mysqli_fetch_array($result)):
                     ?>
                     <div class="product">
                         <a href="/pages/good_card.php?id=<?= $row['good_id'] ?>">
