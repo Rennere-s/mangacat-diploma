@@ -25,7 +25,7 @@
                 <p>Ваш идеальный источник манги</p>
             </div>
         </div>
-        <h1 class="slider-title">Новинки</h1>
+        <h1 class="slider-title">Хиты</h1>
         <div class="slider-wrapper">
             <section class="book-slider">
                 <div class="book-description">
@@ -36,11 +36,11 @@
         <div class="slider-container">
             <div class="slider">
                 <?php 
-                    $result_banner_news = $sql->query("SELECT * FROM `banner_news`"); 
-                    while($row = $result_banner_news->fetch_assoc()):
+                    $result_banner_hits = $sql->query("SELECT * FROM `banner_hits`"); 
+                    while($row = $result_banner_hits->fetch_assoc()):
                 ?>
-                <div class="book" data-title="<?=$row['new_manga_name']?>" data-description="<?=$row['new_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['new_manga_id']?>">
-                    <img src="/img/bannernews<?=$row['new_manga_img']?>.png" alt="">
+                <div class="book" data-title="<?=$row['hits_manga_name']?>" data-description="<?=$row['hits_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['hits_manga_id']?>">
+                    <img src="/img/bannerhits<?=$row['hits_manga_img']?>.png" alt="<?=$row['hits_manga_name']?>">
                 </div>
                 <?php endwhile;?>
             </div>
@@ -131,35 +131,24 @@
                 </div>
             </div>
         </section>
-        <h1 class="slider-title">Новинки</h1>
+          <h1 class="slider-title">Новинки</h1>
         <div class="slider-wrapper">
             <section class="book-slider">
                 <div class="book-description">
                     <h2 class="book-title">Название книги</h2>
                     <p class="book-description-text">Описание активной книги. Здесь будет текст, который меняется при переключении книг.</p>
-                    <button class="learn-more">Узнать больше</button>
+                    <a class="learn-more"><button>Узнать больше</button></a>
                 </div>
         <div class="slider-container">
             <div class="slider">
-                <div class="book" data-title="Книга 1" data-description="Описание олролрвал орваыолавловыорыларо лваолрвыар оыаолыоарыа рваыолавыорал оывалоравыл оавыолрывало рваыолвало книги 1">
-                    <img src="img/book1.png" alt="Книга 1">
-                    <div class="drop-shadow"></div>
+                <?php 
+                    $result_banner_news = $sql->query("SELECT * FROM `banner_news`"); 
+                    while($row = $result_banner_news->fetch_assoc()):
+                ?>
+                <div class="book" data-title="<?=$row['new_manga_name']?>" data-description="<?=$row['new_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['new_manga_id']?>">
+                    <img src="/img/bannernews<?=$row['new_manga_img']?>.png" alt="">
                 </div>
-                <div class="book" data-title="Книга 2" data-description="Описание книги 2"> 
-                    <img src="img/book2.png" alt="Книга 2">
-                </div>
-                <div class="book" data-title="Книга 3" data-description="Описание книги 3">
-                    <img src="img/book3.png" alt="Книга 3">
-                </div>
-                <div class="book" data-title="Книга 4" data-description="Описание книги 4">
-                    <img src="img/book3.png" alt="Книга 4">
-                </div>
-                <div class="book" data-title="Книга 5" data-description="Описание книги 5">
-                    <img src="img/book3.png" alt="Книга 5">
-                </div>
-                <div class="book" data-title="Книга 6" data-description="Описание книги 6">
-                    <img src="img/book3.png" alt="Книга 6">
-                </div>
+                <?php endwhile;?>
             </div>
             <button class="slider-control prev">❮</button>
             <button class="slider-control next">❯</button>
@@ -167,35 +156,24 @@
         <div class="shelf"></div>
     </section>
     </div>
-                <h1 class="slider-title">Новинки</h1>
+                <h1 class="slider-title">Сезонное предложение</h1>
         <div class="slider-wrapper">
             <section class="book-slider">
                 <div class="book-description">
                     <h2 class="book-title">Название книги</h2>
                     <p class="book-description-text">Описание активной книги. Здесь будет текст, который меняется при переключении книг.</p>
-                    <button class="learn-more">Узнать больше</button>
+                    <a class="learn-more"><button>Узнать больше</button></a>
                 </div>
         <div class="slider-container">
             <div class="slider">
-                <div class="book" data-title="Книга 1" data-description="Описание олролрвал орваыолавловыорыларо лваолрвыар оыаолыоарыа рваыолавыорал оывалоравыл оавыолрывало рваыолвало книги 1">
-                    <img src="img/book1.png" alt="Книга 1">
-                    <div class="drop-shadow"></div>
+                <?php 
+                    $result_banner_season = $sql->query("SELECT * FROM `banner_season`"); 
+                    while($row = $result_banner_season->fetch_assoc()):
+                ?>
+                <div class="book" data-title="<?=$row['season_manga_name']?>" data-description="<?=$row['season_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['season_manga_id']?>">
+                    <img src="/img/bannerseasonal<?=$row['season_manga_img']?>.png" alt="<?=$row['season_manga_name']?>">
                 </div>
-                <div class="book" data-title="Книга 2" data-description="Описание книги 2"> 
-                    <img src="img/book2.png" alt="Книга 2">
-                </div>
-                <div class="book" data-title="Книга 3" data-description="Описание книги 3">
-                    <img src="img/book3.png" alt="Книга 3">
-                </div>
-                <div class="book" data-title="Книга 4" data-description="Описание книги 4">
-                    <img src="img/book3.png" alt="Книга 4">
-                </div>
-                <div class="book" data-title="Книга 5" data-description="Описание книги 5">
-                    <img src="img/book3.png" alt="Книга 5">
-                </div>
-                <div class="book" data-title="Книга 6" data-description="Описание книги 6">
-                    <img src="img/book3.png" alt="Книга 6">
-                </div>
+                <?php endwhile;?>
             </div>
             <button class="slider-control prev">❮</button>
             <button class="slider-control next">❯</button>

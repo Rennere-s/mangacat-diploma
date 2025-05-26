@@ -50,70 +50,108 @@ function closeModal() {
 
 function initSlider(sliderContainer) {
     const slider = sliderContainer.querySelector('.slider');
-    const books = sliderContainer.querySelectorAll('.book');
+    const bookElements = Array.from(sliderContainer.querySelectorAll('.book'));
     const prevButton = sliderContainer.querySelector('.slider-control.prev');
     const nextButton = sliderContainer.querySelector('.slider-control.next');
     const bookTitle = sliderContainer.querySelector('.book-title');
     const bookDescription = sliderContainer.querySelector('.book-description-text');
     const learnMoreButton = sliderContainer.querySelector('.learn-more');
 
-    let currentIndex = 0;
+    const visibleCount = 4;
+    const gap = 20; // px gap between slides
+    const slideWidth = bookElements[0].offsetWidth;
+    const cloneCount = visibleCount;
+    const totalOriginal = bookElements.length;
 
-    function updateSlider() {
-        // Сдвигаем слайдер
-        slider.style.transform = `translateX(-${currentIndex * (books[0].offsetWidth + 20)}px)`;
+    // Clone slides for infinite effect
+    const prefixClones = bookElements.slice(-cloneCount).map(el => {
+        const clone = el.cloneNode(true);
+        clone.classList.add('clone');
+        return clone;
+    });
+    const suffixClones = bookElements.slice(0, cloneCount).map(el => {
+        const clone = el.cloneNode(true);
+        clone.classList.add('clone');
+        return clone;
+    });
+    // Append clones
+    prefixClones.forEach(clone => slider.appendChild(clone));
+    bookElements.forEach(el => slider.appendChild(el));
+    suffixClones.forEach(clone => slider.appendChild(clone));
 
-        // Обновляем активный класс у книг
-        books.forEach((book, index) => {
-            book.classList.toggle('active', index === currentIndex);
+    const allSlides = Array.from(slider.children);
+    let currentIndex = cloneCount; // start at first original
+    
+    function updatePosition(animate = true) {
+        if (animate) {
+            slider.style.transition = 'transform 0.4s ease';
+        } else {
+            slider.style.transition = 'none';
+        }
+        const offset = -currentIndex * (slideWidth + gap);
+        slider.style.transform = `translateX(${offset}px)`;
+
+        // Update descriptions based on real index
+        const realIndex = ((currentIndex - cloneCount) % totalOriginal + totalOriginal) % totalOriginal;
+        const activeBook = bookElements[realIndex];
+        bookElements.forEach((book, idx) => {
+            book.classList.toggle('active', idx === realIndex);
         });
-
-        // Обновляем текстовое описание, только если элементы существуют
-        const activeBook = books[currentIndex];
-        if (bookTitle && activeBook.dataset.title) {
-            bookTitle.textContent = activeBook.dataset.title;
-        }
-        if (bookDescription && activeBook.dataset.description) {
-            bookDescription.textContent = activeBook.dataset.description;
-        }
-        if (learnMoreButton && activeBook.dataset.link) {
-            learnMoreButton.setAttribute('href', activeBook.dataset.link);
-        }
-        // console.log("Active Book:", activeBook);
-        // console.log("bookTitle:", bookTitle);
-        // console.log("bookDescription:", bookDescription);
+        if (bookTitle && activeBook.dataset.title) bookTitle.textContent = activeBook.dataset.title;
+        if (bookDescription && activeBook.dataset.description) bookDescription.textContent = activeBook.dataset.description;
+        if (learnMoreButton && activeBook.dataset.link) learnMoreButton.setAttribute('href', activeBook.dataset.link);
     }
 
-    // Обработчики кнопок
+    slider.addEventListener('transitionend', () => {
+        // Loop boundary check
+        if (currentIndex >= totalOriginal + cloneCount) {
+            currentIndex = cloneCount;
+            updatePosition(false);
+        } else if (currentIndex < cloneCount) {
+            currentIndex = totalOriginal + cloneCount - 1;
+            updatePosition(false);
+        }
+    });
+
     prevButton.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : books.length - 1;
-        updateSlider();
+        currentIndex--;
+        updatePosition();
     });
-
     nextButton.addEventListener('click', () => {
-        currentIndex = (currentIndex < books.length - 1) ? currentIndex + 1 : 0;
-        updateSlider();
+        currentIndex++;
+        updatePosition();
     });
-
-    // Обработка клика по книге
-    books.forEach((book, index) => {
-        book.addEventListener('click', () => {
-            currentIndex = index;
-            updateSlider();
+    
+    // Click slide to jump
+    allSlides.forEach((slide, idx) => {
+        slide.addEventListener('click', () => {
+            // Only respond to original slides
+            let newIndex;
+            if (idx < cloneCount) {
+                newIndex = idx + totalOriginal;
+            } else if (idx >= cloneCount + totalOriginal) {
+                newIndex = idx - totalOriginal;
+            } else {
+                newIndex = idx;
+            }
+            currentIndex = newIndex;
+            updatePosition();
         });
     });
 
-    // Инициализация
-    updateSlider();
+    // Initial setup: set container width and position
+    slider.style.width = `${allSlides.length * (slideWidth + gap)}px`;
+    updatePosition(false);
 
-    // Обновление при изменении размера окна
+    // Recompute on resize
     window.addEventListener('resize', () => {
-        updateSlider();
+        // If slide width changes, you may need to recalculate slideWidth and width
+        updatePosition(false);
     });
 }
 
-// Инициализируем все слайдеры
 document.querySelectorAll('.book-slider').forEach(initSlider);
+
 
 // Функция toggleMenu остаётся без изменений
 function toggleMenu() {
