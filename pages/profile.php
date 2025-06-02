@@ -1,3 +1,8 @@
+<?php
+
+$link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,12 +77,8 @@
                                 <th></th>
                             </tr>
                             <?php
-
-                            $goods_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
-                            // $goods_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat'); 
-                            // ЗАМЕНА ПАРОЛЯ
                             $goods_sql = "SELECT good_id, good_name, GROUP_CONCAT(genres.genre_name SEPARATOR ', ') AS genres, good_img, good_back_img, good_description, good_price, availability_name FROM goods LEFT JOIN manga_genre ON g_manga_id = good_id LEFT JOIN genres ON genres.genre_id = manga_genre.m_genre_id JOIN availability ON availability_id = good_availability GROUP BY good_id";
-                            $goods_result = mysqli_query($goods_link, $goods_sql);
+                            $goods_result = mysqli_query($link, $goods_sql);
                             while ($row = mysqli_fetch_array($goods_result)):
 
                                 ?>
@@ -123,10 +124,8 @@
                                 <th></th>
                             </tr>
                             <?php
-
-                            $users_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
                             $users_sql = "SELECT `user_id`, `user_login`, `user_tel`, `user_email`, `user_date`, `role_name` FROM `users` JOIN `roles` on `user_role` = `role_id` ";
-                            $users_result = mysqli_query($users_link, $users_sql);
+                            $users_result = mysqli_query($link, $users_sql);
                             while ($row = mysqli_fetch_array($users_result)):
 
                                 ?>
@@ -166,10 +165,8 @@
                                 <th width="5%"></th>
                             </tr>
                             <?php
-
-                            $genres_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
                             $genres_sql = "SELECT * FROM `genres`";
-                            $genres_result = mysqli_query($genres_link, $genres_sql);
+                            $genres_result = mysqli_query($link, $genres_sql);
                             while ($row = mysqli_fetch_array($genres_result)):
 
                                 ?>
@@ -186,15 +183,17 @@
                     </div>
                 </div>
             <?php endif; ?>
-        <?php else: ?>
+        <?php else:    
+        ?>
             <div class="sidebar">
                 <h2><?= $_COOKIE['user_login'] ?></h2>
                 <a href="/pages/profile.php?type=orders"><i class="fas fa-book"></i> Ваши заказы</a>
                 <a href="/pages/profile.php?type=profile"><i class="fas fa-users"></i> Ваш профиль</a>
-                <!-- <a href="/pages/profile.php?type=settings"><i class="fas fa-gear"></i> Настройки профиля</a> -->
+                <a href="/pages/profile.php?type=adress"><i class="fas fa-gear"></i>Ваши адреса</a>
                 <a onclick="openModal()"><i class="fas fa-sign-out-alt"></i> Выход</a>
             </div>
             <?php
+            $user_id = $_COOKIE['user_id'];
             $type = $_GET['type'];
             if (!isset($type)):
                 ?>
@@ -212,7 +211,34 @@
                         <h1>Добро пожаловать, <?= $_COOKIE['user_login'] ?></h1>
                     </div>
                     <div class="main">
-                        <p>Данный раздел на данный момент в разработке, просим прощения за доставленные неудобства.</p>
+                        <h2>Ваши заказы</h2>
+                        <table class="table">
+                            <tr>
+                                <th>Дата заказа</th>
+                                <th>Название заказанного тома</th>
+                                <th width="10%">фото заказанного тома</th>
+                                <th>Количество</th>
+                                <th>Стоимость</th>
+                                <th>Статус заказа</th>
+                            </tr>
+                            <?php
+                            $orders_user_sql = "SELECT `order_date`, `good_name`, `good_img`, `order_good_amount`, `order_price`, `order_status_name`, `order_id` FROM `orders` JOIN goods ON `order_good_id` = `good_id` JOIN `order_status` ON `order_status_id` = `order_status` WHERE `order_user_id` = '$user_id'";
+                            $orders_user_result = mysqli_query($link, $orders_user_sql);
+                            while ($row = mysqli_fetch_array($orders_user_result)):
+
+                                ?>
+                                <tr>
+                                    <td><?=$row['order_date']?></td>
+                                    <td><?=$row['good_name']?></td>
+                                    <td><img src="<?= $row['good_img'] ?>" alt="<?= $row['good_name'] ?>" width="100%"></td>
+                                    <td><?=$row['order_good_amount']?></td>
+                                    <td><?=$row['order_price']?></td>
+                                    <td><?=$row['order_status_name']?></td>
+                                    <td><a href="/php/del.php?type=orders&id=<?= $row['order_id'] ?>&type_id=order_id"><button
+                                                class="button">Отменить заказ</button></a></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </table>
                     </div>
                 </div>
             <?php elseif ($type == 'profile'): ?>
@@ -222,10 +248,9 @@
                     </div>
                     <?php
 
-                    $users_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
-                    $user_id = $_COOKIE['user_id'];
+
                     $users_sql = "SELECT `user_id`, `user_login`, `user_tel`, `user_email`, `user_date` FROM `users` WHERE `user_id` = '$user_id'";
-                    $users_result = mysqli_query($users_link, $users_sql);
+                    $users_result = mysqli_query($link, $users_sql);
                     $user = mysqli_fetch_array($users_result);
 
                     ?>

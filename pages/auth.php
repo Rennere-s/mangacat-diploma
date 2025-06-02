@@ -22,8 +22,10 @@
         <section class="registration">
             <form class="registration-form" action="/php/auth.php" method="post">
                 <h1>Вход</h1>
-                <input type="text" name="user_login" placeholder="Логин" required>
-                <input type="password" name="user_password" placeholder="Пароль" required>
+                <label>Логин</label>
+                <input type="text" name="user_login" pattern="^.{3,}$" title="Логин должен содержать от 3-х симоволов" placeholder="от 3 символов" required>
+                <label>Пароль</label>
+                <input type="password" name="user_password" pattern="^.{8,}$" title="Пароль должен содержать от 8-и симоволов" placeholder="от 8 символов" required>
                 <?php
                 if (isset($_GET['error'])) {
                     $error_message = urldecode($_GET['error']);

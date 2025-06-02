@@ -136,6 +136,28 @@
                     <button type="submit">Изменить</button>
                 </form>
             </section>
+        <?php elseif ($type == "us_users"): ?>
+            <section class="red">
+                <?php
+                $users_link = mysqli_connect('localhost', 'root', 'root', 'mangaCat');
+                $users_sql = "SELECT * FROM users WHERE user_id = '$id'";
+                $users_result = mysqli_query($users_link, $users_sql);
+                $card = mysqli_fetch_array($users_result);
+                ?>
+                <form class="red-form" action="/php/red.php?type=users" method="post">
+                    <h2>Изменить <?= $card['user_name'] ?></h2>
+                    <input type="text" name="user_id" value="<?= $card['user_id'] ?>" hidden>
+                    <label>Логин</label>
+                    <input type="text" name="user_login" value="<?= $card['user_login'] ?>">
+                    <label>Телефон</label>
+                    <input type="text" name="user_tel" value="<?= $card['user_tel'] ?>">
+                    <label>Емайл</label>
+                    <input type="text" name="user_email" value="<?= $card['user_email'] ?>">
+                    <label>Дата</label>
+                    <input type="text" name="user_date" value="<?= $card['user_date'] ?>">
+                    <button type="submit">Изменить</button>
+                </form>
+            </section>    
         <?php endif; ?>
     </main>
     <footer>
@@ -147,3 +169,4 @@
 </body>
 
 </html>
+

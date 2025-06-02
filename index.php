@@ -40,7 +40,7 @@
                     while($row = $result_banner_hits->fetch_assoc()):
                 ?>
                 <div class="book" data-title="<?=$row['hits_manga_name']?>" data-description="<?=$row['hits_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['hits_manga_id']?>">
-                    <img src="/img/bannerhits<?=$row['hits_manga_img']?>.png" alt="<?=$row['hits_manga_name']?>">
+                    <img src="/img/bannerhits<?=$row['hits_manga_img']?>.png" loading="lazy" alt="<?=$row['hits_manga_name']?>">
                 </div>
                 <?php endwhile;?>
             </div>
@@ -146,7 +146,7 @@
                     while($row = $result_banner_news->fetch_assoc()):
                 ?>
                 <div class="book" data-title="<?=$row['new_manga_name']?>" data-description="<?=$row['new_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['new_manga_id']?>">
-                    <img src="/img/bannernews<?=$row['new_manga_img']?>.png" alt="">
+                    <img src="/img/bannernews<?=$row['new_manga_img']?>.png" loading="lazy" alt="<?=$row['new_manga_name']?>">
                 </div>
                 <?php endwhile;?>
             </div>
@@ -171,7 +171,7 @@
                     while($row = $result_banner_season->fetch_assoc()):
                 ?>
                 <div class="book" data-title="<?=$row['season_manga_name']?>" data-description="<?=$row['season_manga_desc']?>" data-link="/pages/good_card.php?id=<?=$row['season_manga_id']?>">
-                    <img src="/img/bannerseasonal<?=$row['season_manga_img']?>.png" alt="<?=$row['season_manga_name']?>">
+                    <img src="/img/bannerseasonal<?=$row['season_manga_img']?>.png" loading="lazy" alt="<?=$row['season_manga_name']?>">
                 </div>
                 <?php endwhile;?>
             </div>

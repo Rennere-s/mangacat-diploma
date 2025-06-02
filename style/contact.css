@@ -1,0 +1,130 @@
+main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .main-title-contact{
+        color: #D80000;
+        
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      background: white;
+      padding: 2rem;
+      border: 4px black solid;
+    }
+
+    .contact-card {
+      flex: 1 1 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .contact-card svg {
+      width: 40px;
+      height: 40px;
+      fill: #D80000;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    form {
+      background: white;
+      padding: 2rem;
+      border: 4px black solid;
+    }
+
+    form input,
+    form textarea {
+        font-family: 'Rostov';
+      width: 90%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: #D80000;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: white;
+      color: #D80000;
+    }
+
+    .faq {
+      background: white;
+      padding: 2rem;
+      border: 4px black solid;
+    }
+
+    .accordion {
+      border-top: 1px solid #ddd;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+    font-family: 'rostov';
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background-color: #fff0f0;
+    }
+
+    .accordion-body {
+    font-family: 'nishiki-teki';
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      padding: 0 0 0 0;
+    }
+
+    .accordion-body.open {
+      max-height: 200px;
+      padding: 1rem 0 1.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .contact-info {
+        flex-direction: column;
+      }
+    }

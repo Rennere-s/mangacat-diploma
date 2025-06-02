@@ -8,6 +8,7 @@
             <a href="/">Главная</a>
             <a href="/pages/catalog.php">Каталог</a>
             <a href="/pages/about.php">О нас</a>
+            <a href="/pages/contact.php">Контакты</a>
         </nav>
     </div>
     <div class="right">
@@ -35,6 +36,7 @@
     <a href="/">Главная</a>
     <a href="/pages/catalog.php">Каталог</a>
     <a href="/pages/about.php">О нас</a>
+    <a href="/pages/contact.php">Контакты</a>
 </nav>
 
 
