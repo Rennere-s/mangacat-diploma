@@ -19,5 +19,5 @@ foreach ($_SESSION['cart'] as $key => $item) {
         }
     }
 }
-header('location: ../pages/cart.php');
+header('location: /pages/cart.php');
 ?>

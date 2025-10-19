@@ -7,12 +7,9 @@
     --border-radius: 4px;
     --gap: 20px;
     --padding: 5px;
-    --font-family-primary: 'Rostov', sans-serif;
-    --font-family-secondary: 'Nishiki-teki', sans-serif;
 }
 
 body {
-    font-family: var(--font-family-secondary);
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
@@ -31,7 +28,6 @@ a {
 
 .catalog-header {
     text-align: center;
-    font-family: var(--font-family-secondary);
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: var(--gap);
@@ -72,7 +68,6 @@ a {
 }
 
 .filter button {
-    font-family: var(--font-family-primary);
     letter-spacing: 1px;
     background-color: var(--primary-color);
     color: var(--text-color);
@@ -120,7 +115,6 @@ a {
 }
 
 .product-title {
-    font-family: var(--font-family-secondary);
     color: var(--primary-color);
     margin: var(--padding) 0;
     font-size: 1.2rem;
@@ -179,4 +173,14 @@ a {
 footer {
     clear: both;
     width: 100%;
+}
+
+@media (max-width: 720px) {
+    .catalog-content {
+        flex-direction: column;
+    }
+
+    .filter {
+        max-width: 100%;
+    }
 }

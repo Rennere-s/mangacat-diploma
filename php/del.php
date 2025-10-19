@@ -5,7 +5,6 @@ $id = filter_var(trim($_GET['id']), FILTER_VALIDATE_INT);
 $type_id = filter_var(trim($_GET['type_id']), FILTER_SANITIZE_STRING);
 
 
-// echo $id.' '.$type.' '.$type_id;
 include 'db.php';
 
 if ($type == "goods") {

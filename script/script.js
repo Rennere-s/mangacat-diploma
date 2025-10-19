@@ -225,6 +225,34 @@ function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 
 maskPhone('.imput-tel');
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Находим все элементы галереи
+    const mainImage = document.getElementById('main-product-image');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+
+    // Добавляем обработчик клика на каждую миниатюру
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            // Получаем путь к большому изображению из атрибута data-large
+            const largeImageSrc = this.dataset.large;
+
+            // Устанавливаем новое изображение как основное
+            mainImage.src = largeImageSrc;
+            mainImage.alt = this.alt.replace('Миниатюра', 'Фото'); // Меняем alt-текст для доступности
+
+            // Управляем активным классом для выделения
+            // Сначала убираем класс 'active' у всех миниатюр
+            thumbnails.forEach(innerThumb => {
+                innerThumb.classList.remove('active');
+            });
+
+            // Затем добавляем класс 'active' только что кликнутой миниатюре
+            this.classList.add('active');
+        });
+    });
+});
+
 // document.querySelector('.registration-form').addEventListener('submit', function(event) {
 //     event.preventDefault();
 //     alert('Форма отправлена!');

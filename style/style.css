@@ -1,3 +1,23 @@
+
+@font-face {
+  font-family: 'Nishiki Teki'; 
+  src: url('../fonts/Nishiki-Teki.woff2') format('woff2'), 
+       url('../fonts/Nishiki-Teki.woff') format('woff');  
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+
+
+@font-face {
+  font-family: 'Rostov';
+  src: url('../fonts/Rostov.woff2') format('woff2'),
+       url('../fonts/Rostov.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
     --primary-color: #D80000;
     --secondary-color: #333;
@@ -8,22 +28,26 @@
 * {
     margin: 0;
     padding: 0;
-    /* outline: 1px solid black; */
     letter-spacing: 1px;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: "Nishiki-teki", sans-serif;
+    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
     background-color: var(--background-color);
 }
 
 main {
     flex: 1;
-    height: 80vh;
 }
+
+section {
+    margin-top: 30px !important;
+}
+
 
 header {
     background-color: var(--secondary-color);
@@ -33,7 +57,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--secondary-color);
     padding: 10px 20px;
     color: var(--text-color);
 }
@@ -78,7 +101,9 @@ header {
 }
 
 .icons {
+    position: relative;
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
@@ -93,11 +118,61 @@ header {
     color: var(--text-color);
 }
 
+.dropdown_toggle {
+    cursor: pointer;
+}
+
+.dropdown_content {
+    display: block;
+    position: absolute;
+    top: 150%;
+    left: -120px;
+    background-color: var(--text-color);
+    border: 1px solid #ddd;
+    padding: 0;
+    z-index: 1000;
+    min-width: 150px;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown_content.show {
+    height: auto;
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.dropdown_content ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.dropdown_content ul li {
+    padding: 10px 15px;
+}
+
+.dropdown_content ul li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 14px;
+    display: block;
+}
+
+.dropdown_content ul li:hover {
+    background-color: #f0f0f0;
+}
+
 .burger-menu {
     display: none;
     color: var(--primary-color);
     font-size: 24px;
     margin-right: 16px;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
@@ -107,8 +182,6 @@ header {
 
 .burger-nav {
     background-color: var(--secondary-color);
-    color: var(--primary-color);
-    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,6 +192,12 @@ header {
     transform: scaleY(0);
     transform-origin: top;
     transition: max-height 0.4s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.burger-nav.active {
+    max-height: 500px;
+    opacity: 1;
+    transform: scaleY(1);
 }
 
 .burger-nav a {
@@ -132,21 +211,11 @@ header {
     color: var(--primary-color);
 }
 
-.burger-nav.active {
-    max-height: 500px;
-    opacity: 1;
-    transform: scaleY(1);
-}
-
-.burger-nav.active a {
-    transition-delay: 0.2s;
-}
-
 .banner-container {
     position: relative;
     width: 100%;
     height: 300px;
-    background: url('../img/frame 6.png') no-repeat center center/cover;
+    background: url('../img/Frame_6.png') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,12 +243,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
 }
 
 .about-us {
     width: 80vw;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .about-us-information {
@@ -233,7 +304,6 @@ header {
 
 .block-4 {
     background: url('/img/contact-background.png') no-repeat center center/cover;
-    font-family: 'nishiki-teki', sans-serif;
 }
 
 .contact-container {
@@ -285,15 +355,6 @@ header {
     padding: 10px;
 }
 
-.contact-item img {
-    width: 24px;
-    height: 24px;
-}
-
-.contact-image img {
-    width: 400px;
-}
-
 .contact-item i {
     font-size: 24px;
     background-color: var(--primary-color);
@@ -301,407 +362,16 @@ header {
     padding: 10px;
 }
 
-.icons {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.dropdown_content {
-    display: block;
-    position: absolute;
-    top: 150%;
-    left: -120px;
-    background-color: var(--text-color);
-    border: 1px solid #ddd;
-    padding: 0;
-    z-index: 1000;
-    min-width: 150px;
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-}
-
-.dropdown_content ul {
-    list-style: none;
-    margin: 0;
-    padding: 10px 0;
-}
-
-.dropdown_content ul li {
-    padding: 10px 15px;
-}
-
-.dropdown_content ul li a {
-    text-decoration: none;
-    color: var(--secondary-color);
-    font-size: 14px;
-    display: block;
-}
-
-.dropdown_content ul li:hover {
-    background-color: #f0f0f0;
-}
-
-.dropdown_toggle {
-    cursor: pointer;
-}
-
-.dropdown_content.show {
-    height: auto;
-    opacity: 1;
-    transform: scaleY(1);
-}
-
-.footer {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding-top: 40px;
-    display: flex;
-    padding: 20px;
-    justify-content: space-between;
-}
-
-.footer a {
-    transition: color 0.3s ease;
-}
-
-.footer a:hover {
-    color: var(--primary-color);
-}
-
-.footer nav {
-    display: flex;
-}
-
-.footer nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.flex {
-    display: flex;
-}
-
-.footer nav a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.subscription>* {
-    margin: 5px 0px;
-}
-
-.footer-menu-left ul>* {
-    margin: 5px 0px;
-}
-
-.footer .subscription input {
-    padding: 5px;
-    border: 1px solid #ccc;
-}
-
-.footer .subscription button {
-    padding: 5px 10px;
-    background: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    cursor: pointer;
-}
-
-.footer-menu-left {
-    margin-right: 40px;
-}
-
-.footer-menu-catalog {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.footer-menu-catalog ul {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-height: 150px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 10px;
-}
-
-.footer-menu-catalog ul li {
-    flex: 0 0 auto;
-}
-
-.footer .red-header {
-    color: var(--primary-color);
-    margin-top: 10px;
-    padding-bottom: 15px;
-}
-
-body.registration-body {
-    margin: 0;
-    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
-    background: url('/img/reg-background.png') no-repeat center center fixed;
-    background-size: cover;
-}
-
-.registration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-}
-
-.registration-form {
-    background: url('/img/form-background.png') no-repeat center;
-    background-size: 100% 100%;
-    padding: 50px 110px 160px;
+.contact-image img {
     width: 400px;
-    text-align: center;
-    position: relative;
+    height: auto;
 }
 
-.registration-form label {
-    display: block;
-    text-align: left;
-    margin-top: 5px;
-    margin-left: 12px;
-    margin-bottom: 0px;
-    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
-    font-size: 14px;
-    color: var(--secondary-color);
-}
-
-.registration-form h1 {
-    text-align: center;
-    font-family: 'Rostov';
-    letter-spacing: 2px;
-    color: var(--primary-color);
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.registration-form input {
-    width: calc(100% - 20px);
-    margin: 10px 0;
-    padding: 10px;
-    border: 2px solid black;
-    font-size: 14px;
-    font-family: "Nishiki-teki", sans-serif;
-    box-sizing: border-box;
-}
-
-.registration-form input:placeholder-shown {
-    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
-}
-
-.registration-form button {
-    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
-    width: calc(100% - 20px);
-    padding: 10px;
-    background: var(--primary-color);
-    color: var(--text-color);
-    border: 2px solid black;
-    font-size: 16px;
-    cursor: pointer;
-    text-transform: uppercase;
-    margin-top: 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.registration-form button:hover {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-}
-
-.modal {
-    font-family: "Nishiki-teki", sans-serif;
-    letter-spacing: 2px;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: all 1s ease-out;
-}
-
-.modal-content {
-    background-color: var(--text-color);
-    padding: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-}
-
-.modal-content h2 {
-    margin: 0 0 10px;
-}
-
-.modal-content p {
-    margin: 10px 0 20px;
-}
-
-.modal-content button {
-    font-family: "Nishiki-teki", sans-serif;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    border: 2px solid black;
-    font-size: 16px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.modal-content button:hover {
-    background-color: var(--text-color);
-    color: var(--primary-color);
-}
-
-body {
-    font-family: 'Rostov', 'nishiki-teki';
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-/* Заголовок */
-.slider-title {
-    letter-spacing: 3px;
-    font-size: 32px;
-    color: #D80000;
-    text-align: center;
-    margin: 40px 120px; /* Отступы как вам удобно */
-}
-
-/* Основной контейнер слайдера */
-.book-slider {
-    position: relative;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto; /* Если хотите по центру сайта — можно оставить */
-    padding: 0 120px; /* Внутренние отступы */
-    box-sizing: border-box;
-}
-
-/* Левый блок с описанием книги */
-.book-description {
-    width: 30%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
-    padding-right: 40px;
-    box-sizing: border-box;
-    transition: opacity 0.4s ease-in-out;
-}
-
-.book-description h2 {
-    font-size: 24px;
-    color: #D80000;
-    margin-bottom: 10px;
-}
-
-.book-description p {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
-}
-
-.learn-more button{
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    border: 2px solid black;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 15px;
-    display: inline-block;
-    transition: color 0.4s ease-in-out, background-color 0.5s ease-in-out;
-}
-
-.learn-more button:hover{
-    background-color: var(--background-color);
-    color: var(--primary-color);
-}
-
-/* Правая часть — контейнер со слайдером */
-.slider-container {
-    display: inline-block;
-    width: 68%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    vertical-align: top;
-}
-
-.slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.book {
-    min-width: 200px;
-    margin: 0 10px;
-    opacity: 0.5;
-    transition: all 0.3s ease-in-out;
-}
-
-.book.active {
-    min-width: 220px;
-    opacity: 1;
-}
-
-.book img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.slider-control {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-70%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
-}
-
-.slider-control.prev {
-    left: 10px;
-}
-
-.slider-control.next {
-    right: 10px;
-}
-
-.shelf {
-    width: 100%;
-    height: 120px;
-    background: url('../img/shelf.png') no-repeat center;
-    background-size: cover;
-    margin-top: -120px;
-}
 .block-catalog {
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 .block-catalog h2 {
@@ -724,8 +394,6 @@ body {
 .category a {
     display: block;
     position: relative;
-    width: 100%;
-    height: 100%;
     text-decoration: none;
     color: inherit;
 }
@@ -746,7 +414,6 @@ body {
     background: linear-gradient(to top, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0));
     transform: translateY(100%);
     transition: transform 0.3s ease;
-    opacity: 1;
 }
 
 .category .text {
@@ -754,37 +421,336 @@ body {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--secondary-color); /* Цвет текста до наведения — например, чёрный */
+    color: var(--secondary-color);
     background-color: #ffffff;
     padding: 4px;
     font-size: 1.2rem;
     font-weight: bold;
-    opacity: 1; /* Всегда видимый */
-    transition: color 0.3s ease; /* Плавный переход цвета */
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
-
-
 
 .category a:hover::before {
     transform: translateY(0);
 }
 
 .category a:hover .text {
-    color: var(--background-color); /* Белый цвет при наведении */
+    color: var(--text-color);
     background-color: #ffffff00;
 }
 
-section {
-    margin-top: 30px !important;
+.slider-title {
+    letter-spacing: 3px;
+    font-size: 32px;
+    color: #D80000;
+    text-align: center;
+    margin: 40px 120px;
+    transition: margin 0.3s ease;
 }
 
-@media (max-width:1400px) {
+.book-slider {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 120px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transition: padding 0.3s ease;
+}
+
+.book-description {
+    width: 30%;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.book-description h2 {
+    font-size: 24px;
+    color: #D80000;
+    margin-bottom: 10px;
+}
+
+.book-description p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.learn-more button {
+    font-family: 'Rostov', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 2px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: color 0.4s ease, background-color 0.5s ease;
+}
+
+.learn-more button:hover {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+.slider-component-wrapper {
+    position: relative;
+    width: 70%;
+    flex-grow: 1;
+    padding-bottom: 40px;
+}
+
+.slider-viewport {
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.book {
+    flex: 0 0 200px;
+    height: 100%;
+    margin: 0 10px;
+    opacity: 0.7;
+    transform: scale(0.9);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.book.active {
+    opacity: 1;
+    transform: scale(1);
+    flex-basis: 220px;
+}
+
+.book img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    z-index: 10;
+    margin-top: -40px;
+}
+
+.slider-control.prev {
+    left: -20px;
+}
+
+.slider-control.next {
+    right: -20px;
+}
+
+.shelf {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: url('../img/shelf.png') no-repeat center bottom;
+    background-size: cover;
+    z-index: -1;
+}
+
+body.registration-body {
+    background: url('/img/reg-background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.registration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.registration-form {
+    background: url('/img/form-background.png') no-repeat center;
+    background-size: 100% 100%;
+    padding: 50px 110px 160px;
+    text-align: center;
+    position: relative;
+}
+
+.registration-form h1 {
+    font-family: 'Rostov';
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.registration-form label {
+    display: block;
+    text-align: left;
+    margin: 5px 0 0 12px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.registration-form input {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid black;
+    font-size: 14px;
+    font-family: "Nishiki-teki", sans-serif;
+}
+
+.registration-form button {
+    font-family: 'Nishiki-teki', 'Rostov', sans-serif;
+    width: calc(100% - 20px);
+    padding: 10px;
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: 2px solid black;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.registration-form button:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-content button {
+    font-family: "Nishiki-teki", sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+}
+
+.footer nav {
+    display: flex;
+}
+
+.footer nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .subscription input {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.footer .subscription button {
+    padding: 5px 10px;
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+}
+
+.footer-menu-left {
+    margin-right: 40px;
+}
+
+.footer-menu-catalog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-menu-catalog ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 150px;
+    gap: 10px;
+}
+
+.footer .red-header {
+    color: var(--primary-color);
+    margin-top: 10px;
+    padding-bottom: 15px;
+}
+
+
+@media (max-width: 1400px) {
     .footer {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
 
-    .footer-menu {
+    .footer nav {
         flex-direction: column;
         align-items: center;
     }
@@ -797,61 +763,29 @@ section {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 }
 
-@media (max-width:768px) {
-    .block-catalog .categories {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 1024px) {
+    .slider-title {
+        margin: 40px 20px;
+    }
+
+    .book-slider {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .book-description,
+    .slider-component-wrapper {
+        width: 100%;
+        text-align: center;
     }
 }
 
-@media (max-width:600px) {
-    .about-us {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contact-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .about-us-image-of-girl-with-cat {
-        width: 200px;
-        height: 200px;
-    }
-
-    .contact-image img {
-        height: 200px;
-        width: 200px;
-    }
-
-    .catalog-content {
-        flex-direction: column;
-    }
-
-    .catalog-content .filter {
-        max-width: none;
-    }
-
-    .block-catalog .categories {
-        grid-template-columns: repeat(1, 1fr);
-        padding: 0 15px;
-    }
-
-    .registration-form {
-        padding: 50px 70px 160px;
-    }
-
-    .registration-form h1 {
-        font-size: 20px;
-    }
-
-    .registration-form button {
-        font-size: 11px;
-    }
-
+@media (max-width: 768px) {
     .left .nav {
         display: none;
     }
@@ -860,7 +794,95 @@ section {
         display: block;
     }
 
+    .block-catalog .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+
+    .slider-control.prev {
+        left: 5px;
+
+    }
+
+    .slider-control.next {
+        right: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .about-us {
+        flex-direction: column;
+        align-items: center;
+        width: 90vw;
+    }
+
+    .about-us-information {
+        width: 100%;
+    }
+
+    .about-us-image-of-girl-with-cat {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-image img {
+        height: auto;
+        width: 200px;
+    }
+
+    .registration-form {
+        width: 90%;
+        padding: 50px 70px 160px;
+    }
+
     .footer-menu-catalog ul {
-        max-height: 700px;
+        max-height: none;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    .registration-form h1 {
+        font-size: 20px;
+    }
+
+    .registration-form label {
+        font-size: 10px;
+    }
+
+    .registration-form input {
+        font-size: 10px;
+    }
+
+    .registration-form button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    .logo span {
+        display: none;
+    }
+
+    .registration-form {
+        width: 100%;
+    }
+
+    .registration-form input,
+    .registration-form button {
+        width: 100%;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
     }
 }

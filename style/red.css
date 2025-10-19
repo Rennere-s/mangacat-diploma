@@ -1,58 +1,153 @@
+
 :root {
     --primary-color: #D80000;
     --secondary-color: #333;
     --background-color: #F6F6F6;
     --text-color: white;
+
+    --border-color-light: #ccc;
+    --border-color-dark: #000;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-.genres {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.genres-element {
-    width: 25%;
-}
 
 .red {
-    margin-top: 30px;
-    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    padding: 20px 15px;
+    box-sizing: border-box;
 }
+
 
 .red-form {
     display: flex;
     flex-direction: column;
-    background-size: 100% 100%;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid var(--border-color-light);
+    box-shadow: 0 4px 15px var(--shadow-color);
     text-align: center;
-    position: relative;
+    gap: 15px;
+}
+
+.red-form h2 {
+    margin-bottom: 15px;
+}
+
+.red-form p {
+    font-size: 14px;
+    color: var(--secondary-color);
+    margin: 5px 0;
+}
+
+.red-form hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--border-color-light);
+    margin: 10px 0;
+}
+
+
+
+.red-form label {
+    font-weight: bold;
+    text-align: left;
+    font-size: 14px;
+    color: var(--secondary-color);
 }
 
 .red-form input,
 .red-form textarea,
-.red-form select,
-.red-form button {
-    margin: 10px 0;
-    padding: 10px;
-    border: 2px solid black;
+.red-form select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color-light);
     border-radius: 0;
-    font-size: 14px;
+    font-size: 1rem;
     box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: var(--secondary-color);
+}
+
+.red-form input:focus,
+.red-form textarea:focus,
+.red-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(216, 0, 0, 0.2);
 }
 
 .red-form button {
+    padding: 12px 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
     background-color: var(--primary-color);
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .red-form button:hover {
     background-color: var(--text-color);
     color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.genres {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.genres-element {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.genres-element input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--primary-color);
+}
+
+
+@media (min-width: 720px) {
+    .red {
+        padding: 40px;
+    }
+
+    .red-form {
+        padding: 40px;
+        gap: 20px;
+    }
+
+    .genres {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1440px) {
+    .red {
+        padding: 60px;
+    }
+
+    .genres {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .red-form {
+        padding: 50px;
+    }
 }

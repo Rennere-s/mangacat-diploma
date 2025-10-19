@@ -1,3 +1,11 @@
+<?php
+
+$root_for_db = $_SERVER['DOCUMENT_ROOT'];
+require_once "$root_for_db/php/db.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 

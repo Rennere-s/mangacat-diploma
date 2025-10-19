@@ -1,3 +1,12 @@
+<?php
+
+$root_for_db = $_SERVER['DOCUMENT_ROOT'];
+require_once "$root_for_db/php/db.php";
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -16,7 +25,6 @@
         <?php
         $root = $_SERVER['DOCUMENT_ROOT'];
         include "$root/php/modules/header.php";
-        $sql = new mysqli('localhost', 'root', 'root', 'mangacat');
         ?>
     </header>
    <main>
@@ -26,7 +34,7 @@
       <div class="contact-card">
         <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 4.5 10 10 10s10-4.5 10-10V5l-9-4zm0 2.3l7.9 3.2v4c0 4.9-4 9-9 9s-9-4.1-9-9v-4l7.9-3.2zM12 17c-3.3 0-6-2.7-6-6v-2h12v2c0 3.3-2.7 6-6 6z"/></svg>
         <h3>Email</h3>
-        <p>support@example.com</p>
+        <p>support@mangacat.com</p>
       </div>
       <div class="contact-card">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/><path d="M12 14c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2s2 .9 2 2v4c0 1.1-.9 2-2 2z"/></svg>
@@ -36,17 +44,17 @@
       <div class="contact-card">
         <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
         <h3>Адрес</h3>
-        <p>ул. Пушкина, д. 10, г. Москва</p>
+        <p>Адрес: г. Москва, ул. Авиамоторная улица, д. 12к2</p>
       </div>
     </div>
   </section>
 
   <section class="contact-form">
     <h2>Отправьте нам сообщение</h2>
-    <form id="contactForm">
-      <input type="text" placeholder="Ваше имя" required/>
-      <input type="email" placeholder="Email" required/>
-      <textarea rows="5" placeholder="Сообщение..." required></textarea>
+    <form id="contactForm" action="/php/submit_feedback.php" method="POST">
+      <input type="text" placeholder="Ваше имя" name="name" required/>
+      <input type="email" placeholder="Email" name="email" required/>
+      <textarea rows="5" placeholder="Сообщение..." name="message" required></textarea>
       <button type="submit">Отправить</button>
     </form>
   </section>
